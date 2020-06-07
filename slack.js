@@ -7,7 +7,7 @@ const slack = function(params) {
   const options = {
     hostname: 'hooks.slack.com',
     port: 443,
-    path: '/services/xxxxxxxxxxxxxxxx', // ここはIncoming Webhookのurlを設定
+    path: '/services/xxxxxxxxxxxxxxxx', // This param is your slack url of the 'Incoming Webhook' 
     method: 'POST',
     headers: {
       'Content-type': 'application/json'

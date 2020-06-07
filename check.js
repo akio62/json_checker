@@ -1,20 +1,21 @@
-// const https = require('https');
-const http = require('http');
+// const transferProtocol = require('https');
+const transferProtocol = require('http');
 const jsonDiff = require('json-diff')
 const fs = require('fs');
 const slack = require('./slack');
 
+// target JSON url
+const URL = 'http://weather.livedoor.com/forecast/webservice/json/v1?city=400040';
+
+// JSON check interval (ms)
+const checkInterval = 3000;
 
 function chackJSON() {
   const buffer_data = [];
-  // 古いJSONを読み込み
   const file_descriptor = fs.readFileSync('./check.json');
   const oldData = JSON.parse(file_descriptor);
 
-  // JSON取得のurl
-  const URL = 'http://weather.livedoor.com/forecast/webservice/json/v1?city=400040';
-  
-  http.get(URL, function(res) {
+  transferProtocol.get(URL, function(res) {
   
     res.on('data', function(chunk) {
       buffer_data.push(chunk);
@@ -25,7 +26,6 @@ function chackJSON() {
       if (diff) {
         console.log(diff);
         slack({ message: diff });
-　　    // 新しいデータを上書き
         fs.writeFile('check.json', json, function(err) {
           if (!err) { return; }
           slack({ message: '[Error] can\'t save data :' + err });
@@ -42,5 +42,4 @@ function chackJSON() {
 
 chackJSON();
 
-// 3000(3秒に一度実行)
-setInterval(() => chackJSON(), 3000);
+setInterval(() => chackJSON(), checkInterval);
