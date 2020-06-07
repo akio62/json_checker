@@ -44,13 +44,13 @@ See here for slack settings:
 
 https://slack.com/intl/ja-jp/help/articles/115005265063-Slack-%E3%81%A7%E3%81%AE-Incoming-Webhook-%E3%81%AE%E5%88%A9%E7%94%A8
 
-### 4. Start Json checker
+### 4. Start JsonChecker
 
 ```
 $ node checker.js
 ```
 
-### 5. Stop JSON checker
+### 5. Stop JsonChecker
 
 Control + c
 
