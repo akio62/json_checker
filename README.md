@@ -1,6 +1,6 @@
 # JsonChecker
 
-JsonChecker regularly retrieves json from http or https and checks.
+JsonChecker fetches json regularly from http or https and checks.
 
 It will also notify slack of the results.
 
